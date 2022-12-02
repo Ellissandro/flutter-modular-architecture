@@ -1,0 +1,15 @@
+targets:
+  $default:
+    sources:
+      include:
+        - 'benchmark/**'
+        - 'bin/**'
+        - 'example/**'
+        - 'lib/**.dart'
+        - 'lib/**.html'
+        - 'lib/**.css'
+        - 'test/**'
+        - 'tool/**'
+        - 'web/**'
+        - 'pubspec.yaml'
+        - 'pubspec.lock'
