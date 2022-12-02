@@ -9,6 +9,14 @@ part of 'todo_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$TodoController on _TodoControllerBase, Store {
+  Computed<List<ItemModel>>? _$listFilteredComputed;
+
+  @override
+  List<ItemModel> get listFiltered => (_$listFilteredComputed ??=
+          Computed<List<ItemModel>>(() => super.listFiltered,
+              name: '_TodoControllerBase.listFiltered'))
+      .value;
+
   late final _$listItemsAtom =
       Atom(name: '_TodoControllerBase.listItems', context: context);
 
@@ -25,8 +33,35 @@ mixin _$TodoController on _TodoControllerBase, Store {
     });
   }
 
+  late final _$filterAtom =
+      Atom(name: '_TodoControllerBase.filter', context: context);
+
+  @override
+  String get filter {
+    _$filterAtom.reportRead();
+    return super.filter;
+  }
+
+  @override
+  set filter(String value) {
+    _$filterAtom.reportWrite(value, super.filter, () {
+      super.filter = value;
+    });
+  }
+
   late final _$_TodoControllerBaseActionController =
       ActionController(name: '_TodoControllerBase', context: context);
+
+  @override
+  dynamic setFilter(String value) {
+    final _$actionInfo = _$_TodoControllerBaseActionController.startAction(
+        name: '_TodoControllerBase.setFilter');
+    try {
+      return super.setFilter(value);
+    } finally {
+      _$_TodoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   dynamic addItem(ItemModel model) {
@@ -53,7 +88,9 @@ mixin _$TodoController on _TodoControllerBase, Store {
   @override
   String toString() {
     return '''
-listItems: ${listItems}
+listItems: ${listItems},
+filter: ${filter},
+listFiltered: ${listFiltered}
     ''';
   }
 }

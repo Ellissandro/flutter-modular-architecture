@@ -52,13 +52,14 @@ class _TodoPageState extends State<TodoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const TextField(
-          decoration: InputDecoration(hintText: 'Pesquisar...'),
+        title: TextField(
+          onChanged: controller.setFilter,
+          decoration: const InputDecoration(hintText: 'Pesquisar...'),
         ),
       ),
       body: Observer(builder: (_) {
         return ListView.builder(
-          itemCount: controller.listItems.length,
+          itemCount: controller.listFiltered.length,
           itemBuilder: (_, index) {
             final item = controller.listItems[index];
             return ItemWidget(

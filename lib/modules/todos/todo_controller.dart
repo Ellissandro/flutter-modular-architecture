@@ -12,6 +12,24 @@ abstract class _TodoControllerBase with Store {
     ItemModel(title: "Item 2", check: false),
   ].asObservable();
 
+  @computed
+  List<ItemModel> get listFiltered {
+    if (filter.isEmpty) {
+      return listItems;
+    }
+
+    return listItems
+        .where(
+            (item) => item.title.toLowerCase().contains(filter.toLowerCase()))
+        .toList();
+  }
+
+  @observable
+  String filter = '';
+
+  @action
+  setFilter(String value) => filter = value;
+
   @action
   addItem(ItemModel model) {
     listItems.add(model);
