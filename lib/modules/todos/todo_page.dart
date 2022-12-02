@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:intl/intl.dart';
 import 'package:wakke_manager_v2/modules/todos/components/item_widget.dart';
 import 'package:wakke_manager_v2/modules/todos/models/item_model.dart';
 import 'package:wakke_manager_v2/modules/todos/todo_controller.dart';
@@ -52,10 +53,7 @@ class _TodoPageState extends State<TodoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: TextField(
-          onChanged: controller.setFilter,
-          decoration: const InputDecoration(hintText: 'Pesquisar...'),
-        ),
+        title: Text(DateFormat('EEE').format(DateTime.now())),
       ),
       body: Observer(builder: (_) {
         return ListView.builder(

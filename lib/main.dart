@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:get_it/get_it.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:wakke_manager_v2/app_module.dart';
 import 'package:wakke_manager_v2/modules/form/controller.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   GetIt getIt = GetIt.I;
   getIt.registerSingleton<Controller>(Controller());
-
+  Intl.defaultLocale = 'pt';
   return runApp(ModularApp(module: AppModule(), child: const MyApp()));
 }
 
@@ -27,6 +29,14 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp.router(
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate
+        ],
+        supportedLocales: const [
+          Locale('pt', 'BR'),
+        ],
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.purple,
