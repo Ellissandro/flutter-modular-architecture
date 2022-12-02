@@ -18,11 +18,4 @@ class AuthInterceptor extends InterceptorsWrapper {
     ));
     super.onError(err, handler);
   }
-
-  @override
-  void onResponse(Response response, ResponseInterceptorHandler handler) {
-    // TODO: implement onResponse
-    print(response);
-    super.onResponse(response, handler);
-  }
 }
