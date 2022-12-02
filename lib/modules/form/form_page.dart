@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:get_it/get_it.dart';
+import 'package:provider/provider.dart';
 import 'package:wakke_manager_v2/modules/form/controller.dart';
 import 'package:wakke_manager_v2/modules/form/home_body.dart';
 
@@ -9,8 +9,8 @@ class FormPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final controller = Provider.of<Controller>(context);
-    final controller = GetIt.I.get<Controller>();
+    final controller = Provider.of<Controller>(context);
+    // final controller = GetIt.I.get<Controller>();
 
     return Scaffold(
         appBar: AppBar(

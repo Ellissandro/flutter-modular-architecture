@@ -12,6 +12,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final controller = Modular.get<HomeController>();
+  // final controller2 = GetIt.I.get<HomeController>();
 
   @override
   Widget build(BuildContext context) {
